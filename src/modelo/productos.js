@@ -8,6 +8,7 @@ const productoSchema = mongoose.Schema({
     stock: String,
     imagen: String,
     precio: String,
+    estado: Boolean,
     enCarrito: Boolean
 });
 
