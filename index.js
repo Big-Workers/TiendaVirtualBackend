@@ -80,3 +80,6 @@ app.get('/productos/:_id',(req, res) =>{
     });
 });
 
+const rutaVentas = require ("./src/rutas/ventas")
+
+app.use("/api", rutaVentas);
