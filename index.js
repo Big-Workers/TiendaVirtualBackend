@@ -1,10 +1,10 @@
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const express = require("express");
-//const rutas = require("./src/rutas/productos.js");
 
 const BD = require("./src/conexion/conexion.js");
-const esquemaProductos = require("./src/modelo/productos.js");
+const esquemaProductos = require("./src/modelo/productos.js");//importación esquema de productos
+const esquemaCarrito = require("./src/modelo/carrito.js");//importación esquema de carrito
 const CORS = require("cors");
 
 const port = 5000;
@@ -18,67 +18,46 @@ mongoose.connect(BD.mongoURI,{useNewUrlParser : true});
 app.listen(port, () => {
     console.log ("ejecuto la app en el puerto "+ port);
 });
-/*
-app.use("/", rutas)
-*/
 
-//listar todos los productos
-app.get('/productos',(req, res) =>{
-    esquemaProductos.find(function(err, esquemaProductos){
-        if (err) return console.err(err);
-        res.status(200).json(esquemaProductos); 
-    });
-});
+//----------------------PRODUCTOS---------------------------------------------
+const controllersProd = require("./src/controladores/productos");
 
+//listar todos los productos con estado true
+app.get("/productos", controllersProd.getProductos);
 
-//listar productos con stock
-app.get('/productosStock',(req, res) =>{
-    esquemaProductos.find({stock:{$gte:1}}, function(err, esquemaProductos){
-        if (err) return console.err(err);
-        res.send(esquemaProductos)
-    });
-});
+//listar productos con stock y estado true
+app.get("/productosStock", controllersProd.getProductosDisponibles);
 
 //crear nuevos productos
-app.post('/nuevoProducto',(req, res) => {
-    nuevoProducto = new esquemaProductos(req.body)
-    esquemaProductos.create(nuevoProducto)
-    res.send("Producto creado")
-});
+app.post("/nuevoProducto", controllersProd.postProductos);
+
+//actualizar stock de un producto enviando el id
+app.put("/modificarStock/:_id", controllersProd.putProductosStock);
+
+//modificar producto enviando el id
+app.put("/modificarProducto/:_id", controllersProd.putProductos);
+
+//mostrar producto filtrando por id
+app.get("/productos/:_id", controllersProd.getProductosId);
+
+//eliminar productos actualizando el estado a false
+app.put("/eliminarProducto/:_id", controllersProd.deleteProductos);
 
 
+//----------------------CARRITO---------------------------------------------
+const controllers = require("./src/controladores/carrito");
 
-//actualizar stock de los productos
-app.put('/modificarStock/:_id',(req, res) => {
-    const {_id}= req.params
-    const {stock}=req.body
-    esquemaProductos.updateOne({_id: _id},{stock: stock}, function(err, esquemaProductos){
-        if (err) return console.err(err);
-        console.log(esquemaProductos);
-    });
-    res.send("Producto modificado")
-});
+//get
+app.get("/productosCarrito", controllers.getProductosCarrito);
 
+//post
+app.post("/productosCarrito", controllers.addProductosCarrito);
 
-//modificar productos
-app.put('/modificarProducto/:_id',(req, res) => {
-    const {_id}= req.params
-    const {referencia, nombre, descripcion, stock, imagen, precio}=req.body
-    esquemaProductos.updateOne({_id: _id},{referencia:referencia, nombre:nombre, descripcion:descripcion, stock:stock, imagen:imagen, precio:precio }, function(err, esquemaProductos){
-        if (err) return console.err(err);
-        console.log(esquemaProductos);
-    });
-    res.send("Producto modificado")
-});
+//put
+app.put("/productosCarrito/:_id", controllers.putProductosCarrito);
 
-//mostrar producto por id
-app.get('/productos/:_id',(req, res) =>{
-    const {_id}=req.params
-    esquemaProductos.find({_id:_id}, function(err, esquemaProductos){
-        if (err) return console.err(err);
-        res.send(esquemaProductos)
-    });
-});
+//delete
+app.delete("/productosCarrito/:_id", controllers.deleteProductosCarrito);
 
 const rutaVentas = require ("./src/rutas/ventas")
 
