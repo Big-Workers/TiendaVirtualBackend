@@ -1,2 +1,3 @@
 npm init
 npm i mongoose express dotenv nodemon
+ npm i router morgan body-parser nodemon bcrypt 

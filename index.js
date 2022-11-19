@@ -1,6 +1,11 @@
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const express = require("express");
+const morgan = require ("morgan");
+const path = require ("path");
+
+
+
 //const rutas = require("./src/rutas/productos.js");
 
 const BD = require("./src/conexion/conexion.js");
@@ -9,6 +14,9 @@ const CORS = require("cors");
 
 const port = 5000;
 const app = express();
+
+app.use(morgan ("dev"));
+app.use(express.json());
 
 app.use(bodyParser.json())
 app.use(CORS())
@@ -80,3 +88,7 @@ app.get('/productos/:_id',(req, res) =>{
     });
 });
 
+//Rutas Usuario
+// rutas o Url que tendrá el servidor
+
+app.use( "/api/usuario", require("./src/rutas/usuario.routes"));
