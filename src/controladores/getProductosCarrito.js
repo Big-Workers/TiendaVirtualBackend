@@ -1,13 +1,10 @@
 const carrito = require("../modelo/carrito");
 
 const getProductosCarrito = async (req, res) => {
-    const productosCarrito = await carrito.find();
-
-    if (productosCarrito) {
-        res.json({productosCarrito});
-    } else {
-        res.json({mensaje: "No hay productos en el carrito"});
-    }
+    carrito.find(function(err, carrito){
+        if (err) return console.err(err);
+        res.status(200).json(carrito);
+    });
 };
 
 module.exports = getProductosCarrito;
