@@ -49,16 +49,16 @@ app.put("/eliminarProducto/:_id", controllersProd.deleteProductos);
 const controllers = require("./src/controladores/carrito");
 
 //get
-app.get("/productosCarrito", controllers.getProductosCarrito);
+app.get("/getProductosCarrito", controllers.getProductosCarrito);
 
 //post
-app.post("/productosCarrito", controllers.addProductosCarrito);
+app.post("/postProductosCarrito", controllers.addProductosCarrito);
 
 //put
-app.put("/productosCarrito/:_id", controllers.putProductosCarrito);
+app.put("/putProductosCarrito/:_id", controllers.putProductosCarrito);
 
 //delete
-app.delete("/productosCarrito/:_id", controllers.deleteProductosCarrito);
+app.delete("/delProductosCarrito/:_id", controllers.deleteProductosCarrito);
 
 //__________________________VENTAS___________________________________________
 const getCarrito = require("./src/rutas/ventas")

@@ -7,4 +7,4 @@ const carritoSchema = mongoose.Schema({
     cantidad: Number
 });
 
-module.exports = mongoose.model("carrito", carritoSchema);
+module.exports = mongoose.model("carritos", carritoSchema);
