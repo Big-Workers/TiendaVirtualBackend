@@ -16,7 +16,7 @@ router.get("/ventas", (req, res) => {
 });
 
 
-let productosCarrito = fetch("http://localhost:5000/ProductosCarrito")
+let productosCarrito = fetch("http://localhost:5000/getProductosCarrito")
   .then((data)=> data.json())
   .then((data) => {console.log(data)
     return data;

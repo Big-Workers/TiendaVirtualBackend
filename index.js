@@ -61,7 +61,10 @@ app.put("/putProductosCarrito/:_id", controllers.putProductosCarrito);
 app.delete("/delProductosCarrito/:_id", controllers.deleteProductosCarrito);
 
 //resumen de compra en carrito
-app.get("/resumenCarrito", controllers.resumenCarrito);
+app.get("/getResumenCarrito", controllers.getResumenCarrito);
+
+//actualizar resumen carrito
+app.get("/putResumenCarrito", controllers.putResumenCarrito);
 
 //__________________________VENTAS___________________________________________
 const getCarrito = require("./src/rutas/ventas")
