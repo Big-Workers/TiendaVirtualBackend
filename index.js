@@ -59,3 +59,6 @@ app.put("/putProductosCarrito/:_id", controllers.putProductosCarrito);
 //delete
 app.delete("/delProductosCarrito/:_id", controllers.deleteProductosCarrito);
 
+//resumen de compra en carrito
+app.get("/resumenCarrito", controllers.resumenCarrito);
+
