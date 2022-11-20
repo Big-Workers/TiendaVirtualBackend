@@ -12,12 +12,13 @@ const port = 5000;
 const app = express();
 
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended:'true'}))
 app.use(CORS())
 
-mongoose.connect(BD.mongoURI,{useNewUrlParser : true});
+mongoose.connect(BD.mongoURI,{useNewUrlParser : true}, console.log("[MONGO] Conectado a: Artesanias"));
 
 app.listen(port, () => {
-    console.log ("ejecuto la app en el puerto "+ port);
+    console.log ("[SERVIDOR] Conectado en el puerto: "+ port);
 });
 
 //----------------------PRODUCTOS---------------------------------------------
@@ -61,8 +62,6 @@ app.put("/putProductosCarrito/:_id", controllers.putProductosCarrito);
 app.delete("/delProductosCarrito/:_id", controllers.deleteProductosCarrito);
 
 //__________________________VENTAS___________________________________________
-const getCarrito = require("./src/rutas/ventas")
-const rutaVentas = require ("./src/rutas/ventas")
+const ventas = require ("./src/rutas/ventas")
 
-app.use("/api", rutaVentas);
-app.use("/", getCarrito)
+app.use(ventas);

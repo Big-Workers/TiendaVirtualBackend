@@ -1,33 +1,9 @@
 const express = require("express");
-const fetch = require("node-fetch");
-const ventaSchema = require("../modelo/ventas");
-const Carrito = require("../modelo/carrito");
 const router = express.Router();
+const controllerVenta = require("../controladores/getVentas")
 
-//CRUD
-//obtener todos funcionando
-router.get("/ventas", (req, res) => {
-  ventaSchema
-    .find()
-    .then((data) => res.json(data))
-    .catch((err) => res.json({ msg: err }));
-
-  console.log("[GET Ventas] Obteniendo todos los datos");
-});
-
-
-let productosCarrito = fetch("http://localhost:5000/ProductosCarrito")
-  .then((data)=> data.json())
-  .then((data) => {console.log(data)
-    return data;
-  })
-  .catch((err)=> console.log("ocurrio un error", err))
-
-
-router.get("/ventass", (req,res)=>{
-  console.log(productosCarrito)
-})
-
-
+//obtener todos los productos - funcionando
+router.get("/ventas", controllerVenta.GetVentas);
+router.post("/ventas", controllerVenta.PostVentas);
 
 module.exports = router;
