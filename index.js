@@ -5,6 +5,7 @@ const express = require("express");
 const BD = require("./src/conexion/conexion.js");
 const esquemaProductos = require("./src/modelo/productos.js");//importación esquema de productos
 const esquemaCarrito = require("./src/modelo/carrito.js");//importación esquema de carrito
+
 const CORS = require("cors");
 
 const port = 5000;
@@ -59,6 +60,9 @@ app.put("/productosCarrito/:_id", controllers.putProductosCarrito);
 //delete
 app.delete("/productosCarrito/:_id", controllers.deleteProductosCarrito);
 
+//__________________________VENTAS___________________________________________
+const getCarrito = require("./src/rutas/ventas")
 const rutaVentas = require ("./src/rutas/ventas")
 
 app.use("/api", rutaVentas);
+app.use("/", getCarrito)
