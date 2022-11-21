@@ -20,7 +20,7 @@ router.get ("/:id", async (req, res)  =>{
 
 });
 
-// Crear nuevos usuarios ( registro)
+//Crear nuevos usuarios ( registro)
 router.post ("/", async (req, res)=>{
     const {id, nombre, email, telefono, direccion, contraseña, rol} = req.body
     const usuario= new Usuario ({id, nombre, email, telefono, direccion, contraseña, rol});
