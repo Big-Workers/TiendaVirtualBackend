@@ -1,1 +1,2 @@
-npm i mongoose express dotenv nodemon
+npm init
+npm i mongoose express dotenv nodemon node-fetch node-fetch@2
