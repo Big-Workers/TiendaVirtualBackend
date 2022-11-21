@@ -10,6 +10,7 @@ const path = require ("path");
 const BD = require("./src/conexion/conexion.js");
 const esquemaProductos = require("./src/modelo/productos.js");//importación esquema de productos
 const esquemaCarrito = require("./src/modelo/carrito.js");//importación esquema de carrito
+
 const CORS = require("cors");
 
 const port = 5000;
@@ -19,12 +20,13 @@ app.use(morgan ("dev"));
 app.use(express.json());
 
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended:'true'}))
 app.use(CORS())
 
-mongoose.connect(BD.mongoURI,{useNewUrlParser : true});
+mongoose.connect(BD.mongoURI,{useNewUrlParser : true}, console.log("[MONGO] Conectado a: Artesanias"));
 
 app.listen(port, () => {
-    console.log ("ejecuto la app en el puerto "+ port);
+    console.log ("[SERVIDOR] Conectado en el puerto: "+ port);
 });
 
 //----------------------PRODUCTOS---------------------------------------------
@@ -56,18 +58,27 @@ app.put("/eliminarProducto/:_id", controllersProd.deleteProductos);
 const controllers = require("./src/controladores/carrito");
 
 //get
-app.get("/productosCarrito", controllers.getProductosCarrito);
+app.get("/getProductosCarrito", controllers.getProductosCarrito);
 
 //post
-app.post("/productosCarrito", controllers.addProductosCarrito);
+app.post("/postProductosCarrito", controllers.addProductosCarrito);
 
 //put
-app.put("/productosCarrito/:_id", controllers.putProductosCarrito);
+app.put("/putProductosCarrito/:_id", controllers.putProductosCarrito);
 
 //delete
-app.delete("/productosCarrito/:_id", controllers.deleteProductosCarrito);
+app.delete("/delProductosCarrito/:_id", controllers.deleteProductosCarrito);
+
+//resumen de compra en carrito
+app.get("/getResumenCarrito", controllers.getResumenCarrito);
+
+//actualizar resumen carrito
+app.get("/putResumenCarrito", controllers.putResumenCarrito);
 
 //Rutas Usuario
 // rutas o Url que tendrá el servidor
+//__________________________VENTAS___________________________________________
+const ventas = require ("./src/rutas/ventas")
 
 app.use( "/api/usuario", require("./src/rutas/usuario.routes"));
+app.use(ventas);

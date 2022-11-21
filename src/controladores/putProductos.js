@@ -4,7 +4,7 @@ const putProductos = async (req, res) => {
     const {_id}= req.params
     const {referencia, nombre, descripcion, stock, imagen, precio}=req.body
     esquemaProductos.updateOne({_id: _id},{
-        eferencia:referencia, 
+        referencia:referencia, 
         nombre:nombre, 
         descripcion:descripcion, 
         stock:stock, imagen:imagen, 
