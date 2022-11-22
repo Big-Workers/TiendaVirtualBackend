@@ -16,9 +16,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.js"
+    "start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "engines":{
+    "node": "16.18.0",
+    "npm": "8.19.2"
+  }
 }
