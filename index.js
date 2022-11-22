@@ -75,6 +75,9 @@ app.get("/getResumenCarrito", controllers.getResumenCarrito);
 //actualizar resumen carrito
 app.get("/putResumenCarrito", controllers.putResumenCarrito);
 
+//actualizar resumen carrito
+app.get("/vaciarCarrito", controllers.vaciarCarrito);
+
 //Rutas Usuario
 // rutas o Url que tendrá el servidor
 //__________________________VENTAS___________________________________________
