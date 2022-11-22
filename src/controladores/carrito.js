@@ -4,6 +4,7 @@ const putProductosCarrito = require("./putProductosCarrito");
 const deleteProductosCarrito = require("./deleteProductosCarrito");
 const getResumenCarrito = require("./getResumenCarrito");
 const putResumenCarrito = require("./putResumenCarrito");
+const vaciarCarrito = require("./vaciarCarrito");
 
 module.exports = {
     getProductosCarrito,
@@ -11,5 +12,6 @@ module.exports = {
     putProductosCarrito,
     deleteProductosCarrito,
     getResumenCarrito,
-    putResumenCarrito
+    putResumenCarrito,
+    vaciarCarrito
 }
