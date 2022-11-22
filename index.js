@@ -25,6 +25,7 @@ app.use(CORS())
 
 mongoose.connect(BD.mongoURI,{useNewUrlParser : true}, console.log("[MONGO] Conectado a: Artesanias"));
 
+
 app.listen(port, () => {
     console.log ("[SERVIDOR] Conectado en el puerto: "+ port);
 });
