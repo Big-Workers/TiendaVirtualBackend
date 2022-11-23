@@ -13,7 +13,7 @@ const esquemaCarrito = require("./src/modelo/carrito.js");//importación esquema
 
 const CORS = require("cors");
 
-const port = proccess.env.PORT || 5001;
+const port = process.env.PORT || 5000;
 const app = express();
 
 app.use(morgan ("dev"));
