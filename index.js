@@ -13,7 +13,7 @@ const esquemaCarrito = require("./src/modelo/carrito.js");//importación esquema
 
 const CORS = require("cors");
 
-const port = process.env.port || 5000;
+const port = proccess.env.PORT || 5001;
 const app = express();
 
 app.use(morgan ("dev"));
@@ -80,9 +80,12 @@ app.get("/putResumenCarrito", controllers.putResumenCarrito);
 app.get("/vaciarCarrito", controllers.vaciarCarrito);
 
 //Rutas Usuario
+
+
+app.use( "/api/usuario", require("./src/rutas/usuario.routes"));
+
 // rutas o Url que tendrá el servidor
 //__________________________VENTAS___________________________________________
 const ventas = require ("./src/rutas/ventas")
 
-app.use( "/api/usuario", require("./src/rutas/usuario.routes"));
 app.use(ventas);

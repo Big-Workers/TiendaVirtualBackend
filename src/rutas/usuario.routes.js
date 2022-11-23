@@ -22,8 +22,8 @@ router.get ("/:id", async (req, res)  =>{
 
 //Crear nuevos usuarios ( registro)
 router.post ("/", async (req, res)=>{
-    const {id, nombre, email, telefono, direccion, contraseña, rol} = req.body
-    const usuario= new Usuario ({id, nombre, email, telefono, direccion, contraseña, rol});
+    const {id, nombre, email, telefono, direccion, contraseña} = req.body
+    const usuario= new Usuario ({id, nombre, email, telefono, direccion, contraseña, rol:"cliente"});
     console.log (usuario);
     await usuario.save ();
     res.json(req.body);
