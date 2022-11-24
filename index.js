@@ -3,17 +3,11 @@ const mongoose = require("mongoose");
 const express = require("express");
 const morgan = require ("morgan");
 const path = require ("path");
-
-
-
-
-const BD = require("./src/conexion/conexion.js");
-const esquemaProductos = require("./src/modelo/productos.js");//importación esquema de productos
-const esquemaCarrito = require("./src/modelo/carrito.js");//importación esquema de carrito
-
 const CORS = require("cors");
 
-const port = process.env.PORT || 5000;
+const BD = require("./src/conexion/conexion.js");
+
+const port = 5000;
 const app = express();
 
 app.use(morgan ("dev"));
@@ -80,7 +74,6 @@ app.get("/putResumenCarrito", controllers.putResumenCarrito);
 app.get("/vaciarCarrito", controllers.vaciarCarrito);
 
 //Rutas Usuario
-
 
 app.use( "/api/usuario", require("./src/rutas/usuario.routes"));
 

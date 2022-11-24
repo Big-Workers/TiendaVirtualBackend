@@ -1,6 +1,6 @@
 const venta = require("../modelo/ventas");
-const Carrito = require("../modelo/carrito");
 const carrito = require("../modelo/carrito");
+const resumenCompra = require("../modelo/resumenCompra");
 
 const tiempoTranscurrido = Date.now();
 const hoy = new Date(tiempoTranscurrido);
@@ -15,17 +15,19 @@ exports.GetVentas = (req, res) => {
 };
 
 exports.PostVentas = async (req, res) => {
-    
+
+  //Obtiene productos del carrito
   const enCarrito = await carrito.find();
 
+  //obtiene resumen de compra
+  const resumen = await resumenCompra.find();
+
+  //almacena la venta en la bd
   nuevaVenta = new venta({
     fecha: hoy.toLocaleDateString(),
-    productos: enCarrito, //falta obtener array de carrito
-    cantidad: 0, //falta sumar cantidad
-    total: 1, //falta obtener el total
+    productos: enCarrito,
+    resumen: resumen
   });
   nuevaVenta.save();
-
-  console.log("Nueva venta = ", nuevaVenta);
   res.json({ msg: "venta guardada" });
 };
