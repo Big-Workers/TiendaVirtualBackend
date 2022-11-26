@@ -7,7 +7,7 @@ const CORS = require("cors");
 
 const BD = require("./src/conexion/conexion.js");
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 const app = express();
 
 app.use(morgan ("dev"));
