@@ -7,7 +7,7 @@ const CORS = require("cors");
 
 const BD = require("./src/conexion/conexion.js");
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 const app = express();
 
 app.use(morgan ("dev"));
@@ -18,7 +18,6 @@ app.use(bodyParser.urlencoded({extended:'true'}))
 app.use(CORS())
 
 mongoose.connect(BD.mongoURI,{useNewUrlParser : true}, console.log("[MONGO] Conectado a: Artesanias"));
-
 
 app.listen(port, () => {
     console.log ("[SERVIDOR] Conectado en el puerto: "+ port);
