@@ -81,3 +81,13 @@ app.use( "/api/usuario", require("./src/rutas/usuario.routes"));
 const ventas = require ("./src/rutas/ventas")
 
 app.use(ventas);
+
+
+//________________________USUARIOS___________________________________________
+const controllersUser = require("./src/controladores/usuarios");
+
+app.get("/users", controllersUser.getUsuarios);
+app.put("/editUser/:_id", controllersUser.editUser)
+app.get('/user/:_id', controllersUser.getUserById)
+app.post('/register', controllersUser.register)
+app.post('/login', controllersUser.login)

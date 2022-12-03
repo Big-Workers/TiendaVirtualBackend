@@ -3,15 +3,12 @@ const { Schema } = mongoose;
 
 
 const usuarioSchema = new Schema ({
-
-    idusuario:{type:Number},
     nombre: { type: String, require: true},
     email: { type: String, require: true, unique:true},
     telefono: { type: Number, require: true},
     direccion: { type: String, require: true},
     contraseña: { type: String, require: true},
     rol:{type:String}
-
 });
 
 
