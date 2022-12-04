@@ -1,6 +1,6 @@
 const getUsuarios = require("./getUsuarios");
 const register = require('./register')
-const login = require('./getUserById')
+const login = require('./login')
 const getUserById = require('./getUserById')
 //const getUsuariosId = require("./getUsuariosId");
 //const postUsuarios = require("./postUsuarios");
